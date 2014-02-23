@@ -20,17 +20,12 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceGroup;
 import net.androidcomics.acv.R;
-import net.robotmedia.acv.billing.BillingManager;
-import net.robotmedia.acv.billing.BillingManager.IObserver;
-import net.robotmedia.acv.ui.settings.PremiumSettingsHelper;
 
-public class SettingsActivityMobile extends ExtendedPreferenceActivity implements IObserver {
+public class SettingsActivityMobile extends ExtendedPreferenceActivity {
 
 	private static final String PREFERENCE_ROOT = "root";
 	private static final String PREFERENCE_PREMIUM = "premium";
-	
-	private PremiumSettingsHelper helper;
-	
+		
 	@Override
 	protected int getPreferencesResource() {
 		return R.xml.preferences;
@@ -40,30 +35,14 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity implement
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		this.helper = new PremiumSettingsHelper(this);
-		BillingManager.getInstance(this).setObserver(this);
-		
-		if (BillingManager.getInstance(this).canPurchasePremium()) {
-			@SuppressWarnings("deprecation")
-			Preference preference = findPreference(PremiumSettingsHelper.PREFERENCE_PURCHASE_PREMIUM);
-			helper.preparePurchasePremium(preference);
-		} else {
-			this.removePremium();
-		}
+		this.removePremium();
 	}
 	
 	@Override
 	protected void onDestroy() {
-		BillingManager.getInstance(this).setObserver(null);
 		super.onDestroy();
 	}
 
-	@Override
-	public void onPremiumPurchased() {
-		this.removePremium();
-		this.removeAd();
-	}
-	
 	private void removePremium() {
 		@SuppressWarnings("deprecation")
 		PreferenceGroup root = (PreferenceGroup) findPreference(PREFERENCE_ROOT);
@@ -71,11 +50,6 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity implement
 		if (premium == null) return;
 		
 		root.removePreference(premium);
-	}
-
-	@Override
-	public Activity getPurchaseActivity() {
-		return this;
 	}
 	
 }

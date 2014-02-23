@@ -20,7 +20,6 @@ import java.util.List;
 import android.preference.PreferenceActivity;
 
 import net.androidcomics.acv.R;
-import net.robotmedia.acv.billing.BillingManager;
 
 public class SettingsActivityTablet extends PreferenceActivity {
 
@@ -29,15 +28,6 @@ public class SettingsActivityTablet extends PreferenceActivity {
 	@Override
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.preference_headers, target);
-        
-        // Remove Premium header if the app is premium
-        for (Header header : target) {
-        	if (header.id != R.id.header_premium) continue;
-        	
-        	if (!BillingManager.getInstance(this).canPurchasePremium()) {
-        		target.remove(header);
-        	}
-        }
         headers = target;
     }
 	

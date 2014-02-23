@@ -222,12 +222,12 @@ public class SuperImageView extends ImageView {
 		}
 	}
 	
-	private float getMaxWidth() {
-		return getOriginalWidth() * Constants.MAX_ZOOM_FACTOR;	
+	public  int getMaxWidth() {
+		return (int)(getOriginalWidth() * Constants.MAX_ZOOM_FACTOR);	
 	}
 	
-	private float getMaxHeight() {
-		return getOriginalHeight() * Constants.MAX_ZOOM_FACTOR;		
+	public int getMaxHeight() {
+		return (int)(getOriginalHeight() * Constants.MAX_ZOOM_FACTOR);		
 	}
 	
 	public float getZoomFactor() {

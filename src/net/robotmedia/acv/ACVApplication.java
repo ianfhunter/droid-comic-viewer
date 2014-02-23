@@ -15,7 +15,6 @@
  ******************************************************************************/
 package net.robotmedia.acv;
 
-import net.robotmedia.acv.billing.BillingManager;
 import net.robotmedia.acv.logic.PreferencesController;
 import android.app.Application;
 
@@ -28,7 +27,7 @@ public class ACVApplication extends Application {
 		preferences.legacy();
 		preferences.setMaxImageResolution();
 
-		BillingManager.getInstance(this).initialize();
+//		BillingManager.getInstance(this).initialize();
 	}
 
 }

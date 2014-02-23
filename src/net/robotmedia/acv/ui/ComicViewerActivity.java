@@ -309,6 +309,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
@@ -316,6 +317,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	}
 	
 	public boolean onDoubleTap(MotionEvent e) {
+	    
 		String action = preferences.getString(Constants.INPUT_DOUBLE_TAP, Constants.ACTION_VALUE_ZOOM_IN);
 		Point p = new Point(Math.round(e.getX()), Math.round(e.getY()));
 		if (Constants.ACTION_VALUE_ZOOM_IN.equals(action) && isComicLoaded() && mScreen.isMaxZoom()) {
@@ -432,9 +434,9 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 				
 				switch(featureId) {
 					case R.id.item_share:
-						menu.findItem(R.id.item_share_screen).setVisible(comicLoaded);
+/*						menu.findItem(R.id.item_share_screen).setVisible(comicLoaded);
 						menu.findItem(R.id.item_set_as).setVisible(comicLoaded);
-						break;
+						break;*/
 				}
 			} else {
 			}
@@ -488,24 +490,24 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		case R.id.item_browse:
 			actionValue = Constants.ACTION_VALUE_SCREEN_BROWSER;
 			break;
-		case R.id.item_rotate:
+/*		case R.id.item_rotate:
 			actionValue = Constants.ACTION_VALUE_ROTATE;
-			break;
+			break;*/
 		case R.id.item_settings:
 			actionValue = Constants.ACTION_VALUE_SETTINGS;
 			break;
 		case R.id.item_open:
 			actionValue = Constants.ACTION_VALUE_SD_BROWSER;
 			break;
-		case R.id.item_share_app:
+/*		case R.id.item_share_app:
 			actionValue = Constants.ACTION_VALUE_SHARE_APP;
-			break;
+			break;*/
 		case R.id.item_set_as:
 			actionValue = Constants.ACTION_SET_AS;
 			break;
-		case R.id.item_share_screen:
+/*		case R.id.item_share_screen:
 			actionValue = Constants.ACTION_VALUE_SHARE_SCREEN;
-			break;
+			break;*/
 		case R.id.menu_close:
 			actionValue = Constants.ACTION_CLOSE;
 			break;
@@ -525,12 +527,12 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		}
 		
 		boolean comicLoaded = isComicLoaded();
-		menu.findItem(R.id.item_share_screen).setVisible(comicLoaded);
+//		menu.findItem(R.id.item_share_screen).setVisible(comicLoaded);
 		menu.findItem(R.id.item_set_as).setVisible(comicLoaded);
 		menu.findItem(R.id.item_navigate).setVisible(comicLoaded);
 		menu.findItem(R.id.item_zoom).setVisible(comicLoaded);
 		menu.findItem(R.id.item_browse).setVisible(comicLoaded);
-		menu.findItem(R.id.item_rotate).setVisible(comicLoaded);
+//		menu.findItem(R.id.item_rotate).setVisible(comicLoaded);
 		
 		if (comicLoaded) {
 			boolean considerFrames = comic.hasFrames(mScreen.getIndex());
@@ -783,9 +785,6 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 				action = mScreen.fitScreen();
 			} else if (Constants.ACTION_VALUE_ACTUAL_SIZE.equals(actionValue)) {
 				action = mScreen.actualSize();
-			} else if (Constants.ACTION_VALUE_SHARE_SCREEN.equals(actionValue)) {
-				shareScreen();
-				action = true;
 			} else if (Constants.ACTION_SET_AS.equals(actionValue)) {
 				setAs();
 				action = true;
@@ -805,9 +804,6 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		} else if (Constants.ACTION_VALUE_ROTATE.equals(actionValue)) {
 			rotate();
 			action = true;
-		} else if (Constants.ACTION_VALUE_SHARE_APP.equals(actionValue)) {
-			shareApp();
-			return true;
 		} else if (Constants.ACTION_MENU.equals(actionValue)) {
 			showMenu();
 			return true;
@@ -1033,25 +1029,6 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		editor.commit();
 		requestedRotation = true;
 		setRequestedOrientation(requestedOrientation);
-	}
-
-	private void shareApp() {
-		Intent intent = new Intent(Intent.ACTION_SEND);
-		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_app_title));
-		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_message));
-		Intent chooser = Intent.createChooser(intent, getString(R.string.item_share_app_title));
-		startActivity(chooser);
-	}
-	
-	private void shareScreen() {
-		ShareViewTask task = new ShareViewTask(this);
-		task.setRelativeTempPath(Constants.TEMP_PATH);
-		task.setChooserTitle(getString(R.string.item_share_screen_title));
-		task.setExtraSubject(getString(R.string.share_screen_title));
-		task.setExtraText(getString(R.string.share_screen_message));
-		task.setName(comic.getName());
-		task.execute(mScreen);
 	}
 
 	/**
