@@ -19,7 +19,7 @@
     <string name="activity_sd_browser_label">Select a comic from your SD card</string>
     <string name="activity_settings_label">Settings</string>
     <string name="activity_credits_label">Credits</string>
-    <string name="activity_subscribe_label">Subscribe</string>
+    <string name="activity_license_label">Licenses</string>
 
     <!-- Main -->
     <string name="main_recent_items">OPEN RECENT</string>
@@ -127,8 +127,8 @@
     <string name="preference_version_title">Version</string>
     <string name="preference_version_summary">ACV v</string>  
     <string name="preference_contact_title">Contact</string>
-    <string name="preference_contact_summary">Email Robot Media</string>                       
-    <string name="preference_subscribe_summary">Receive news about ACV</string>
+    <string name="preference_contact_summary">Email Developer</string>                       
+    <string name="preference_license_summary">Attributions &amp; Legal Stuff</string>
     
     <!-- Premium -->
     <string name="category_premium_title">Premium</string>
@@ -145,22 +145,6 @@
     <string name="preference_max_image_height_title">Max image height</string>
     <string name="preference_max_image_height_dialog_title">Max image height</string>
     <string name="preference_max_image_height_dialog_message">Set the maximum image height. Taller images will be downscaled.</string>
-
-	<!-- Subscribe -->
-    <string name="txt_subscribe_intro">Subscribe to our email newsletter to be notified of future releases.</string>
-    <string name="btn_subscribe_submit">Submit</string>
-   	<string name="dialog_subscribe_success_title">Subscription in process</string>
-    <string name="dialog_subscribe_success_text">You will receive an activation email shortly.</string>
-    <string name="dialog_subscribe_error_title">Ooops!</string>
-    <string name="dialog_subscribe_error_text">The newsletter service is either unreachable or unavailable. Please try again later.</string>
-	<string name="dialog_email_error_title">Invalid email</string>
-    <string name="dialog_email_error_text">Please enter a valid email address.</string>
-
-	<!-- Share -->
-    <string name="share_app_title">Read comics in your Android!</string>
-    <string name="share_app_message">Check out ACV, the #1 comics and manga reader for Android http://goo.gl/FfAWL</string>
-    <string name="share_screen_title">Screen from @comic</string>
-    <string name="share_screen_message">Check out this screen from @comic sent from ACV http://goo.gl/FfAWL</string>
 
 	<!-- Changelog -->
 	<string name="dialog_changelog_title">Changelog</string>

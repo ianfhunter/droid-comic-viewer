@@ -27,7 +27,5 @@ public class ACVApplication extends Application {
 		preferences.legacy();
 		preferences.setMaxImageResolution();
 
-//		BillingManager.getInstance(this).initialize();
 	}
-
 }

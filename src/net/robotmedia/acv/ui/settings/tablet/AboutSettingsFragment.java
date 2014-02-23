@@ -47,30 +47,10 @@ public class AboutSettingsFragment extends ExtendedPreferenceFragment {
 		}
 		version.setSummary(version.getSummary() + versionName);
 		
-		final Preference subscribe = findPreference(KEY_SUBSCRIBE);
-		subscribe.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-			public boolean onPreferenceClick(Preference preference) {
-				Intent myIntent = new Intent(AboutSettingsFragment.this.getActivity(), SubscribeActivity.class);
-				myIntent.putExtra(SubscribeActivity.SOURCE_EXTRA, SOURCE_VALUE);
-				startActivityForResult(myIntent, Constants.SUBSCRIBE_CODE);
-				return true;
-			}
-		});
 	}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == Constants.SUBSCRIBE_CODE) {
-			switch (resultCode) {
-			case -1:
-				DialogFactory.showSimpleAlert(this.getActivity(), true, R.string.dialog_subscribe_success_title, R.string.dialog_subscribe_success_text);
-				break;
-			case SubscribeActivity.RESULT_ERROR:
-				DialogFactory.showSimpleAlert(this.getActivity(), false, R.string.dialog_subscribe_error_title, R.string.dialog_subscribe_error_text);
-				break;
-			}
-		}
 	}
 }

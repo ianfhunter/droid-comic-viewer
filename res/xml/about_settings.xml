@@ -16,14 +16,14 @@
 -->
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
-  		<Preference android:key="subscribe" android:title="@string/activity_subscribe_label"
-			android:summary="@string/preference_subscribe_summary">
+  		<Preference android:key="license" android:title="@string/activity_license_label"
+			android:summary="@string/preference_license_summary">
 		</Preference>
-    	<PreferenceScreen android:title="@string/preference_acv_listing_title"
+     	<PreferenceScreen android:title="@string/preference_acv_listing_title"
 			android:summary="@string/preference_acv_listing_summary">
 			<intent android:action="android.intent.action.VIEW"
 				android:data="@string/acv_uri" />
-		</PreferenceScreen>
+		</PreferenceScreen> 
 		<PreferenceScreen android:title="@string/preference_contact_title"
 			android:summary="@string/preference_contact_summary">
 			<intent android:action="android.intent.action.VIEW"
